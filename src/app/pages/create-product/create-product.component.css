@@ -1,0 +1,13 @@
+.add-detail-product{
+  margin: 16px;
+
+  label {
+    font-size: 18px;
+  }
+}
+
+.submit-btn {
+  width: 120px;
+  height: 60px;
+}
+

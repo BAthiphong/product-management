@@ -1,0 +1,31 @@
+<div>
+  <!-- ปุ่มสำหรับเพิ่มสินค้าใหม่ -->
+  <button class="create-btn" (click)="navigateToAddProduct()">
+    Add New Product
+  </button>
+</div>
+
+<div *ngIf="products && products.length > 0">
+  <div *ngFor="let product of products" class="product-card">
+    <h2>Product name: {{ product._id }}</h2>
+    <h2>Product name: {{ product.name }}</h2>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+
+    <!-- Images -->
+    <div class="image-flex">
+      <div class="image-flex-item" *ngFor="let image of product.images">
+        <img [src]="image" alt="{{ product.name }}" width="100" />
+      </div>
+    </div>
+
+    <!-- BTN -->
+    <div class="btn-func">
+      <button class="edit-btn" (click)="editProduct(product)">
+        Edit product
+      </button>
+      <button class="submit-btn" (click)="onDelete(product._id)" type="submit">Delete Product</button>
+    </div>
+  </div>
+</div>

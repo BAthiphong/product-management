@@ -1,0 +1,2175 @@
+<p>create-product works!</p>
+
+<form (ngSubmit)="createProduct()">
+  <!-- Product Name -->
+  <div class="add-detail-product">
+    <label for="name">Product Name: </label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" required />
+  </div>
+  <!-- Product Description -->
+  <div class="add-detail-product">
+    <label for="description">Product Description: </label>
+    <input
+      type="text"
+      id="description"
+      [(ngModel)]="description"
+      name="description"
+      required
+    />
+  </div>
+  <!-- Product Price -->
+  <div class="add-detail-product">
+    <label for="price">Price: </label>
+    <input type="number" id="price" [(ngModel)]="price" name="price" required />
+  </div>
+  <!-- Product Quantity -->
+  <div class="add-detail-product">
+    <label for="quantity">Quantity: </label>
+    <input
+      type="number"
+      id="quantity"
+      [(ngModel)]="quantity"
+      name="quantity"
+      required
+    />
+  </div>
+  <!-- Image Upload (Multiple Images) -->
+  <div class="add-detail-product">
+    <label for="images">Upload Product Images: </label>
+    <input type="file" id="images" (change)="onFileChange($event)" multiple />
+  </div>
+
+  <!-- Specail product -->
+  <div class="specail-product">
+    <label for="specailProduct">Specail product</label>
+    <select
+      id="specailProduct"
+      name="specailProduct"
+      [(ngModel)]="specailProduct"
+      (change)="onSpecailProdcutChange($event)"
+      required
+    >
+      <option [value]="true">Yes</option>
+      <option [value]="false">No</option>
+    </select>
+  </div>
+  <!-- Product Type (Dropdown) -->
+  <div class="add-detail-product">
+    <label for="type">Product Type: </label>
+    <select
+      id="type"
+      [(ngModel)]="selectedType"
+      name="type"
+      (change)="onTypeChange($event)"
+      required
+    >
+      <option value="">Select Product Type</option>
+      <option value="CPU">CPU</option>
+      <option value="Monitor">Monitor</option>
+      <option value="Mainboard">Mainboard</option>
+      <option value="GPU">GPU</option>
+      <option value="Ram">Ram</option>
+      <option value="Storage">Storage</option>
+      <option value="Cooler">CPU Cooler</option>
+      <option value="Mouse">Mouse</option>
+      <option value="Keyboard">Keyboard</option>
+      <option value="Headphone">Headphone</option>
+      <option value="Powersupply">Power supply</option>
+      <option value="Case">Case</option>
+      <!-- Add more types as needed -->
+    </select>
+  </div>
+  <!-- CPU Details (when selectedType is CPU) -->
+  <div *ngIf="selectedType === 'CPU'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="series">Series: </label>
+      <input
+        type="text"
+        id="series"
+        [(ngModel)]="product.details.series"
+        name="series"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="processorNumber">Processor Number: </label>
+      <input
+        type="text"
+        id="processorNumber"
+        [(ngModel)]="product.details.processorNumber"
+        name="processorNumber"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="socketType">Socket Type: </label>
+      <input
+        type="text"
+        id="socketType"
+        [(ngModel)]="product.details.socketType"
+        name="socketType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="coresThreads">Cores/Threads: </label>
+      <input
+        type="text"
+        id="coresThreads"
+        [(ngModel)]="product.details.coresThreads"
+        name="coresThreads"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="baseFrequency">Base Frequency: </label>
+      <input
+        type="text"
+        id="baseFrequency"
+        [(ngModel)]="product.details.baseFrequency"
+        name="baseFrequency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="maxTurboFrequency">Max Turbo Frequency: </label>
+      <input
+        type="text"
+        id="maxTurboFrequency"
+        [(ngModel)]="product.details.maxTurboFrequency"
+        name="maxTurboFrequency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="l2Cache">L2 Cache: </label>
+      <input
+        type="text"
+        id="l2Cache"
+        [(ngModel)]="product.details.l2Cache"
+        name="l2Cache"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="l3Cache">L3 Cache: </label>
+      <input
+        type="text"
+        id="l3Cache"
+        [(ngModel)]="product.details.l3Cache"
+        name="l3Cache"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="graphicsModels">Graphics Models: </label>
+      <input
+        type="text"
+        id="graphicsModels"
+        [(ngModel)]="product.details.graphicsModels"
+        name="graphicsModels"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="bitSupport">Bit Support: </label>
+      <input
+        type="text"
+        id="bitSupport"
+        [(ngModel)]="product.details.bitSupport"
+        name="bitSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuCooler">CPU Cooler: </label>
+      <input
+        type="text"
+        id="cpuCooler"
+        [(ngModel)]="product.details.cpuCooler"
+        name="cpuCooler"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="maximumTurboPower">Maximum Turbo Power: </label>
+      <input
+        type="text"
+        id="maximumTurboPower"
+        [(ngModel)]="product.details.maximumTurboPower"
+        name="maximumTurboPower"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Monitor Details (when selectedType is Monitor) -->
+  <div *ngIf="selectedType === 'Monitor'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="displaySize">Display Size: </label>
+      <input
+        type="text"
+        id="displaySize"
+        [(ngModel)]="product.details.displaySize"
+        name="displaySize"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="panelSize">Panel Size: </label>
+      <input
+        type="text"
+        id="panelSize"
+        [(ngModel)]="product.details.panelSize"
+        name="panelSize"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="resolution">Resolution: </label>
+      <input
+        type="text"
+        id="resolution"
+        [(ngModel)]="product.details.resolution"
+        name="resolution"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="resolutionType">Resolution Type: </label>
+      <input
+        type="text"
+        id="resolutionType"
+        [(ngModel)]="product.details.resolutionType"
+        name="resolutionType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="displayColor">Display Color: </label>
+      <input
+        type="text"
+        id="displayColor"
+        [(ngModel)]="product.details.displayColor"
+        name="displayColor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="displayViewingArea">Display Viewing Area: </label>
+      <input
+        type="text"
+        id="displayViewingArea"
+        [(ngModel)]="product.details.displayViewingArea"
+        name="displayViewingArea"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="brightness">Brightness: </label>
+      <div *ngFor="let brightness of product.details.brightness; let i = index">
+        <input
+          type="text"
+          [(ngModel)]="product.details.brightness[i]"
+          name="brightness{{ i }}"
+        />
+        <button type="button" (click)="removeBrightness(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addBrightness()">Add Brightness</button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="contrastRatio">Contrast Ratio: </label>
+      <input
+        type="text"
+        id="contrastRatio"
+        [(ngModel)]="product.details.contrastRatio"
+        name="contrastRatio"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="responseTime">Response Time: </label>
+      <input
+        type="text"
+        id="responseTime"
+        [(ngModel)]="product.details.responseTime"
+        name="responseTime"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="aspectRatio">Aspect Ratio: </label>
+      <input
+        type="text"
+        id="aspectRatio"
+        [(ngModel)]="product.details.aspectRatio"
+        name="aspectRatio"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="refreshRate">Refresh Rate: </label>
+      <input
+        type="text"
+        id="refreshRate"
+        [(ngModel)]="product.details.refreshRate"
+        name="refreshRate"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="screenCurvature">Screen Curvature: </label>
+      <input
+        type="text"
+        id="screenCurvature"
+        [(ngModel)]="product.details.screenCurvature"
+        name="screenCurvature"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="pixelPitch">Pixel Pitch: </label>
+      <input
+        type="text"
+        id="pixelPitch"
+        [(ngModel)]="product.details.pixelPitch"
+        name="pixelPitch"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="viewingAngle">Viewing Angle: </label>
+      <input
+        type="text"
+        id="viewingAngle"
+        [(ngModel)]="product.details.viewingAngle"
+        name="viewingAngle"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="colorGamut">Color Gamut: </label>
+      <input
+        type="text"
+        id="colorGamut"
+        [(ngModel)]="product.details.colorGamut"
+        name="colorGamut"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="hdrSupport">HDR Support: </label>
+      <input
+        type="text"
+        id="hdrSupport"
+        [(ngModel)]="product.details.hdrSupport"
+        name="hdrSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="adaptiveSync">Adaptive Sync: </label>
+      <div
+        *ngFor="let adaptiveSync of product.details.adaptiveSync; let i = index"
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.adaptiveSync[i]"
+          name="adaptiveSync{{ i }}"
+        />
+        <button type="button" (click)="removeAdaptiveSync(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addAdaptiveSync()">
+        Add adaptiveSync
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="displaySurface">Display Surface: </label>
+      <input
+        type="text"
+        id="displaySurface"
+        [(ngModel)]="product.details.displaySurface"
+        name="displaySurface"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="flickerFree">Flicker Free: </label>
+      <input
+        type="text"
+        id="flickerFree"
+        [(ngModel)]="product.details.flickerFree"
+        name="flickerFree"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="lowBlueLight">Low Blue Light: </label>
+      <input
+        type="text"
+        id="lowBlueLight"
+        [(ngModel)]="product.details.lowBlueLight"
+        name="lowBlueLight"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="connectivity">Connectivity: </label>
+      <div
+        *ngFor="let connectivity of product.details.connectivity; let i = index"
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.connectivity[i]"
+          name="connectivity{{ i }}"
+        />
+        <button type="button" (click)="removeConnectivity(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addConnectivity()">
+        Add connectivity
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="signalFrequency">Signal Frequency: </label>
+      <input
+        type="text"
+        id="signalFrequency"
+        [(ngModel)]="product.details.signalFrequency"
+        name="signalFrequency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerConsumption">Power Consumption: </label>
+      <div
+        *ngFor="
+          let powerConsumption of product.details.powerConsumption;
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.powerConsumption[i]"
+          name="powerConsumption{{ i }}"
+        />
+        <button type="button" (click)="removePowerConsumption(i)">
+          Remove
+        </button>
+      </div>
+      <button type="button" (click)="addPowerConsumption()">
+        Add powerConsumption
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="mechanical">Mechanical: </label>
+      <div *ngFor="let mechanical of product.details.mechanical; let i = index">
+        <input
+          type="text"
+          [(ngModel)]="product.details.mechanical[i]"
+          name="mechanical{{ i }}"
+        />
+        <button type="button" (click)="removeMechanical(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addMechanical()">Add mechanical</button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimension">Dimension: </label>
+      <input
+        type="text"
+        id="dimension"
+        [(ngModel)]="product.details.dimension"
+        name="dimension"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="weight">weight: </label>
+      <div *ngFor="let weight of product.details.weight; let i = index">
+        <input
+          type="text"
+          [(ngModel)]="product.details.weight[i]"
+          name="weight{{ i }}"
+        />
+        <button type="button" (click)="removeWeight(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addWeight()">Add weight</button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="color">Color: </label>
+      <input
+        type="text"
+        id="color"
+        [(ngModel)]="product.details.color"
+        name="color"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Mainboard Detail (When selectedType is Mainboard) -->
+  <div *ngIf="selectedType === 'Mainboard'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuSupport">CPU Support: </label>
+      <input
+        type="text"
+        id="cpuSupport"
+        [(ngModel)]="product.details.cpuSupport"
+        name="cpuSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuSocket">CPU Socket: </label>
+      <input
+        type="text"
+        id="cpuSocket"
+        [(ngModel)]="product.details.cpuSocket"
+        name="cpuSocket"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="chipset">Chipset: </label>
+      <input
+        type="text"
+        id="chipset"
+        [(ngModel)]="product.details.chipset"
+        name="chipset"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memorySlots">Memory Slots: </label>
+      <input
+        type="text"
+        id="memorySlots"
+        [(ngModel)]="product.details.memorySlots"
+        name="memorySlots"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryType">Memory Type: </label>
+      <input
+        type="text"
+        id="memoryType"
+        [(ngModel)]="product.details.memoryType"
+        name="memoryType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="maxMemmory">Max Memory: </label>
+      <input
+        type="text"
+        id="maxMemmory"
+        [(ngModel)]="product.details.maxMemmory"
+        name="maxMemmory"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="onboardGraphics">Onboard Graphics: </label>
+      <input
+        type="text"
+        id="onboardGraphics"
+        [(ngModel)]="product.details.onboardGraphics"
+        name="onboardGraphics"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="onboardAudioShipset">Onboard Audio Chipset: </label>
+      <input
+        type="text"
+        id="onboardAudioShipset"
+        [(ngModel)]="product.details.onboardAudioShipset"
+        name="onboardAudioShipset"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="audioChanels">Audio Chanels: </label>
+      <input
+        type="text"
+        id="audioChanels"
+        [(ngModel)]="product.details.audioChanels"
+        name="audioChanels"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="ExpansionSlots">Expansion Slots: </label>
+      <div
+        *ngFor="
+          let expansionSlots of product.details.expansionSlots;
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.expansionSlots[i]"
+          name="expansionSlots{{ i }}"
+        />
+        <button type="button" (click)="removeExpansionSlots(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addExpansionSlots()">
+        Add Expansion Slots
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="storage">Storage: </label>
+      <div *ngFor="let storage of product.details.storage; let i = index">
+        <input
+          type="text"
+          [(ngModel)]="product.details.storage[i]"
+          name="storage{{ i }}"
+        />
+        <button type="button" (click)="removeStorage(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addStorage()">Add Storage</button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="rearPanel">Rear Panel: </label>
+      <div *ngFor="let rearPanel of product.details.rearPanel; let i = index">
+        <input
+          type="text"
+          [(ngModel)]="product.details.rearPanel[i]"
+          name="rearPanel{{ i }}"
+        />
+        <button type="button" (click)="removeRearPanel(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addRearPanel()">Add Rear Panel</button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="lanChipset">Lan Chipset: </label>
+      <input
+        type="text"
+        id="lanChipset"
+        [(ngModel)]="product.details.lanChipset"
+        name="lanChipset"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="lanSpeed">lan Speed: </label>
+      <input
+        type="text"
+        id="lanSpeed"
+        [(ngModel)]="product.details.lanSpeed"
+        name="lanSpeed"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimensions">Dimensions: </label>
+      <input
+        type="text"
+        id="dimensions"
+        [(ngModel)]="product.details.dimensions"
+        name="dimensions"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerPin">PowerPin: </label>
+      <input
+        type="text"
+        id="powerPin"
+        [(ngModel)]="product.details.powerPin"
+        name="powerPin"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="formFactor">FormFactor: </label>
+      <input
+        type="text"
+        id="formFactor"
+        [(ngModel)]="product.details.formFactor"
+        name="formFactor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- GPU Detail -->
+  <div *ngIf="selectedType === 'GPU'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="gpuSeries">GPU Series: </label>
+      <input
+        type="text"
+        id="gpuSeries"
+        [(ngModel)]="product.details.gpuSeries"
+        name="gpuSeries"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="gpuModel">GPU Model: </label>
+      <input
+        type="text"
+        id="gpuModel"
+        [(ngModel)]="product.details.gpuModel"
+        name="gpuModel"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memorySize">Memory Size: </label>
+      <input
+        type="text"
+        id="memorySize"
+        [(ngModel)]="product.details.memorySize"
+        name="memorySize"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="busStandard">Bus Standard: </label>
+      <input
+        type="text"
+        id="busStandard"
+        [(ngModel)]="product.details.busStandard"
+        name="busStandard"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cudaCore">Cuda Core: </label>
+      <input
+        type="text"
+        id="cudaCore"
+        [(ngModel)]="product.details.cudaCore"
+        name="cudaCore"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryInterface">memory Interface: </label>
+      <input
+        type="text"
+        id="memoryInterface"
+        [(ngModel)]="product.details.memoryInterface"
+        name="memoryInterface"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="boostClock">Boost Clock: </label>
+      <input
+        type="text"
+        id="boostClock"
+        [(ngModel)]="product.details.boostClock"
+        name="boostClock"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="baseClock">Base Clock: </label>
+      <input
+        type="text"
+        id="baseClock"
+        [(ngModel)]="product.details.baseClock"
+        name="baseClock"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryClock">Memory Clock: </label>
+      <input
+        type="text"
+        id="memoryClock"
+        [(ngModel)]="product.details.memoryClock"
+        name="memoryClock"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="maxDigitalResolution">Max Digital Resolution: </label>
+      <input
+        type="text"
+        id="maxDigitalResolution"
+        [(ngModel)]="product.details.maxDigitalResolution"
+        name="maxDigitalResolution"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="hdmiPort">HDMI Port: </label>
+      <input
+        type="text"
+        id="hdmiPort"
+        [(ngModel)]="product.details.hdmiPort"
+        name="hdmiPort"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="displayPort">Display Port: </label>
+      <input
+        type="text"
+        id="displayPort"
+        [(ngModel)]="product.details.displayPort"
+        name="displayPort"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="coolerFan">Cooler Fan: </label>
+      <input
+        type="text"
+        id="coolerFan"
+        [(ngModel)]="product.details.coolerFan"
+        name="coolerFan"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerConector">Power Conector: </label>
+      <input
+        type="text"
+        id="powerConector"
+        [(ngModel)]="product.details.powerConector"
+        name="powerConector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerRequirement">Power Requirement: </label>
+      <input
+        type="text"
+        id="powerRequirement"
+        [(ngModel)]="product.details.powerRequirement"
+        name="powerRequirement"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimension">Dimension: </label>
+      <input
+        type="text"
+        id="dimension"
+        [(ngModel)]="product.details.dimension"
+        name="dimension"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Ram Detail -->
+  <div *ngIf="selectedType === 'Ram'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memorySeries">Memory Series: </label>
+      <input
+        type="text"
+        id="memorySeries"
+        [(ngModel)]="product.details.memorySeries"
+        name="memorySeries"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryCapacity">Memory Capacity: </label>
+      <input
+        type="text"
+        id="memoryCapacity"
+        [(ngModel)]="product.details.memoryCapacity"
+        name="memoryCapacity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryType">Memory Type: </label>
+      <input
+        type="text"
+        id="memoryType"
+        [(ngModel)]="product.details.memoryType"
+        name="memoryType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="casLatency">Cas Latency: </label>
+      <input
+        type="text"
+        id="casLatency"
+        [(ngModel)]="product.details.casLatency"
+        name="casLatency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="testedlatency">Tested Latency: </label>
+      <input
+        type="text"
+        id="testedlatency"
+        [(ngModel)]="product.details.testedlatency"
+        name="testedlatency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="sdpVoltage">SDP Voltage: </label>
+      <input
+        type="text"
+        id="sdpVoltage"
+        [(ngModel)]="product.details.sdpVoltage"
+        name="sdpVoltage"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="memoryColor">Memory Color: </label>
+      <input
+        type="text"
+        id="memoryColor"
+        [(ngModel)]="product.details.memoryColor"
+        name="memoryColor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Storage Detail -->
+  <div *ngIf="selectedType === 'Storage'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="formFactor">Form Factor: </label>
+      <input
+        type="text"
+        id="formFactor"
+        [(ngModel)]="product.details.formFactor"
+        name="formFactor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="capacity">Capacity: </label>
+      <input
+        type="text"
+        id="capacity"
+        [(ngModel)]="product.details.capacity"
+        name="capacity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="interface">Inter Face: </label>
+      <input
+        type="text"
+        id="interface"
+        [(ngModel)]="product.details.interface"
+        name="interface"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="readSpeed">Read Speed: </label>
+      <input
+        type="text"
+        id="readSpeed"
+        [(ngModel)]="product.details.readSpeed"
+        name="readSpeed"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="writeSpeed">Write Speed: </label>
+      <input
+        type="text"
+        id="writeSpeed"
+        [(ngModel)]="product.details.writeSpeed"
+        name="writeSpeed"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Cooler Detail -->
+  <div *ngIf="selectedType === 'Cooler'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="coolerModel">Cooler Model: </label>
+      <input
+        type="text"
+        id="coolerModel"
+        [(ngModel)]="product.details.coolerModel"
+        name="coolerModel"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="exteriorColor">Exterior Color: </label>
+      <input
+        type="text"
+        id="exteriorColor"
+        [(ngModel)]="product.details.exteriorColor"
+        name="exteriorColor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuSocketCooler">CPU Socket: </label>
+      <div
+        *ngFor="
+          let cpuSocketCooler of product.details.cpuSocketCooler;
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.cpuSocketCooler[i]"
+          name="cpuSocketCooler{{ i }}"
+        />
+        <button type="button" (click)="removeCpuSocketCooler(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addCpuSocketCooler()">
+        Add cpuSocketCooler
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatorDimension">Radiator Dimension: </label>
+      <input
+        type="text"
+        id="radiatorDimension"
+        [(ngModel)]="product.details.radiatorDimension"
+        name="radiatorDimension"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="readiatorMeterail">Readiator Meterail: </label>
+      <input
+        type="text"
+        id="readiatorMeterail"
+        [(ngModel)]="product.details.readiatorMeterail"
+        name="readiatorMeterail"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatorSize">RadiatorSize: </label>
+      <input
+        type="text"
+        id="radiatorSize"
+        [(ngModel)]="product.details.radiatorSize"
+        name="radiatorSize"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="thermalDesignPower">Thermal Design Power: </label>
+      <input
+        type="text"
+        id="thermalDesignPower"
+        [(ngModel)]="product.details.thermalDesignPower"
+        name="thermalDesignPower"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="pumpSpeed">Pump Speed: </label>
+      <input
+        type="text"
+        id="pumpSpeed"
+        [(ngModel)]="product.details.pumpSpeed"
+        name="pumpSpeed"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanDimensions">Fan Dimensions: </label>
+      <input
+        type="text"
+        id="fanDimensions"
+        [(ngModel)]="product.details.fanDimensions"
+        name="fanDimensions"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanLedType">Fan Len Types: </label>
+      <input
+        type="text"
+        id="fanLedType"
+        [(ngModel)]="product.details.fanLedType"
+        name="fanLedType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSpeed">Fan Speed: </label>
+      <input
+        type="text"
+        id="fanSpeed"
+        [(ngModel)]="product.details.fanSpeed"
+        name="fanSpeed"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanAirflow">Fan Airflow: </label>
+      <input
+        type="text"
+        id="fanAirflow"
+        [(ngModel)]="product.details.fanAirflow"
+        name="fanAirflow"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanNoise">Fan Noise: </label>
+      <input
+        type="text"
+        id="fanNoise"
+        [(ngModel)]="product.details.fanNoise"
+        name="fanNoise"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanConnector">Fan Connector: </label>
+      <input
+        type="text"
+        id="fanConnector"
+        [(ngModel)]="product.details.fanConnector"
+        name="fanConnector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="coolerWeight">Weight: </label>
+      <input
+        type="text"
+        id="coolerWeight"
+        [(ngModel)]="product.details.coolerWeight"
+        name="coolerWeight"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="coolerType">Cooler Type: </label>
+      <input
+        type="text"
+        id="coolerType"
+        [(ngModel)]="product.details.coolerType"
+        name="coolerType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Mouse Detail-->
+  <div *ngIf="selectedType === 'Mouse'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="tiltScrollFunction">Tilt Scroll Function: </label>
+      <input
+        type="text"
+        id="tiltScrollFunction"
+        [(ngModel)]="product.details.tiltScrollFunction"
+        name="tiltScrollFunction"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="clickLifeSpan">Click Life Span: </label>
+      <input
+        type="text"
+        id="clickLifeSpan"
+        [(ngModel)]="product.details.clickLifeSpan"
+        name="clickLifeSpan"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="scrollWhell">Scroll Whell: </label>
+      <input
+        type="text"
+        id="scrollWhell"
+        [(ngModel)]="product.details.scrollWhell"
+        name="scrollWhell"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="nummerOfButtons">Nummer Of Buttons: </label>
+      <input
+        type="text"
+        id="nummerOfButtons"
+        [(ngModel)]="product.details.nummerOfButtons"
+        name="nummerOfButtons"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="batterryLife">Batterry Life: </label>
+      <input
+        type="text"
+        id="batterryLife"
+        [(ngModel)]="product.details.batterryLife"
+        name="batterryLife"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="batterryType">Batterry Type: </label>
+      <input
+        type="text"
+        id="batterryType"
+        [(ngModel)]="product.details.batterryType"
+        name="batterryType"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="mouseInterface">Mouse Interface: </label>
+      <input
+        type="text"
+        id="mouseInterface"
+        [(ngModel)]="product.details.mouseInterface"
+        name="mouseInterface"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="sensorResolution">Sensor Resolution: </label>
+      <input
+        type="text"
+        id="sensorResolution"
+        [(ngModel)]="product.details.sensorResolution"
+        name="sensorResolution"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="sensorTechnology">Sensor Technology: </label>
+      <input
+        type="text"
+        id="sensorTechnology"
+        [(ngModel)]="product.details.sensorTechnology"
+        name="sensorTechnology"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="wirelessTechnology">Wireless Technology: </label>
+      <input
+        type="text"
+        id="wirelessTechnology"
+        [(ngModel)]="product.details.wirelessTechnology"
+        name="wirelessTechnology"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimensions">Dimensions: </label>
+      <input
+        type="text"
+        id="dimensions"
+        [(ngModel)]="product.details.dimensions"
+        name="dimensions"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="color">Color: </label>
+      <input
+        type="text"
+        id="color"
+        [(ngModel)]="product.details.color"
+        name="color"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Keyboard detail -->
+  <div *ngIf="selectedType === 'Keyboard'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="switchName">Switch Name: </label>
+      <input
+        type="text"
+        id="switchName"
+        [(ngModel)]="product.details.switchName"
+        name="switchName"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="keyboardConnectivity">Keyboard Connectivity: </label>
+      <input
+        type="text"
+        id="keyboardConnectivity"
+        [(ngModel)]="product.details.keyboardConnectivity"
+        name="keyboardConnectivity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="lighting">Lighting: </label>
+      <input
+        type="text"
+        id="lighting"
+        [(ngModel)]="product.details.lighting"
+        name="lighting"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="localization">localization: </label>
+      <input
+        type="text"
+        id="localization"
+        [(ngModel)]="product.details.localization"
+        name="localization"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="materail">Materail: </label>
+      <input
+        type="text"
+        id="materail"
+        [(ngModel)]="product.details.materail"
+        name="materail"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="wirelessFrequency">Wireless Frequency: </label>
+      <input
+        type="text"
+        id="wirelessFrequency"
+        [(ngModel)]="product.details.wirelessFrequency"
+        name="wirelessFrequency"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="batteryTypeAndQuantity">Battery Type And Quantity: </label>
+      <input
+        type="text"
+        id="batteryTypeAndQuantity"
+        [(ngModel)]="product.details.batteryTypeAndQuantity"
+        name="batteryTypeAndQuantity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimension">Dimension: </label>
+      <input
+        type="text"
+        id="dimension"
+        [(ngModel)]="product.details.dimension"
+        name="dimension"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="keyboardWeight">Keyboard Weight: </label>
+      <input
+        type="text"
+        id="keyboardWeight"
+        [(ngModel)]="product.details.keyboardWeight"
+        name="keyboardWeight"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="usbPort">USB Port: </label>
+      <input
+        type="text"
+        id="usbPort"
+        [(ngModel)]="product.details.usbPort"
+        name="usbPort"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="type">Type: </label>
+      <input
+        type="text"
+        id="type"
+        [(ngModel)]="product.details.type"
+        name="type"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="wiredOrWireless">Wired Or Wireless: </label>
+      <input
+        type="text"
+        id="wiredOrWireless"
+        [(ngModel)]="product.details.wiredOrWireless"
+        name="wiredOrWireless"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Headphone detail -->
+  <div *ngIf="selectedType === 'Headphone'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="color">Color: </label>
+      <input
+        type="text"
+        id="color"
+        [(ngModel)]="product.details.color"
+        name="color"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="connector">Connector: </label>
+      <input
+        type="text"
+        id="connector"
+        [(ngModel)]="product.details.connector"
+        name="connector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="driverUnit">DriverUnit: </label>
+      <input
+        type="text"
+        id="driverUnit"
+        [(ngModel)]="product.details.driverUnit"
+        name="driverUnit"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="frequencyResponse">Frequency Response: </label>
+      <input
+        type="text"
+        id="frequencyResponse"
+        [(ngModel)]="product.details.frequencyResponse"
+        name="frequencyResponse"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="sensitivity">Sensitivity: </label>
+      <input
+        type="text"
+        id="sensitivity"
+        [(ngModel)]="product.details.sensitivity"
+        name="sensitivity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="inputImpedance">Input Impedance: </label>
+      <input
+        type="text"
+        id="inputImpedance"
+        [(ngModel)]="product.details.inputImpedance"
+        name="inputImpedance"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="micFrequencyResponse">Mic Frequency Response: </label>
+      <input
+        type="text"
+        id="micFrequencyResponse"
+        [(ngModel)]="product.details.micFrequencyResponse"
+        name="micFrequencyResponse"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="micSensitivity">MIC Sensitivity: </label>
+      <input
+        type="text"
+        id="micSensitivity"
+        [(ngModel)]="product.details.micSensitivity"
+        name="micSensitivity"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="micImpedance">MIC Impedance: </label>
+      <input
+        type="text"
+        id="micImpedance"
+        [(ngModel)]="product.details.micImpedance"
+        name="micImpedance"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cordLenght">Cord Lenght: </label>
+      <input
+        type="text"
+        id="cordLenght"
+        [(ngModel)]="product.details.cordLenght"
+        name="cordLenght"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Powersupply -->
+  <div *ngIf="selectedType === 'Powersupply'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="energyEfficient">Energy Efficient: </label>
+      <input
+        type="text"
+        id="energyEfficient"
+        [(ngModel)]="product.details.energyEfficient"
+        name="energyEfficient"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="modular">Modular: </label>
+      <input
+        type="text"
+        id="modular"
+        [(ngModel)]="product.details.modular"
+        name="modular"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="continuousPowerW">Continuous PowerW: </label>
+      <input
+        type="text"
+        id="continuousPowerW"
+        [(ngModel)]="product.details.continuousPowerW"
+        name="continuousPowerW"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="psuFormFactor">PSU FormFactor: </label>
+      <input
+        type="text"
+        id="psuFormFactor"
+        [(ngModel)]="product.details.psuFormFactor"
+        name="psuFormFactor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="mbConnector">MB Connector: </label>
+      <input
+        type="text"
+        id="mbConnector"
+        [(ngModel)]="product.details.mbConnector"
+        name="mbConnector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuConnector">CPU Connector: </label>
+      <input
+        type="text"
+        id="cpuConnector"
+        [(ngModel)]="product.details.cpuConnector"
+        name="cpuConnector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="pcieConnector">PCIE Connector: </label>
+      <div
+        *ngFor="
+          let pcieConnector of product.details.pcieConnector;
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.pcieConnector[i]"
+          name="pcieConnector{{ i }}"
+        />
+        <button type="button" (click)="removePcieConnector(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addPcieConnector()">
+        Add pcieConnector
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="sataConnector">Sata Connector: </label>
+      <input
+        type="text"
+        id="sataConnector"
+        [(ngModel)]="product.details.sataConnector"
+        name="sataConnector"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSize">Fan Size: </label>
+      <input
+        type="text"
+        id="fanSize"
+        [(ngModel)]="product.details.fanSize"
+        name="fanSize"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimensions">Dimensions: </label>
+      <input
+        type="text"
+        id="dimensions"
+        [(ngModel)]="product.details.dimensions"
+        name="dimensions"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="psuWeight">PSU Weight: </label>
+      <input
+        type="text"
+        id="psuWeight"
+        [(ngModel)]="product.details.psuWeight"
+        name="psuWeight"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="protection">Protection: </label>
+      <input
+        type="text"
+        id="protection"
+        [(ngModel)]="product.details.protection"
+        name="protection"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerRage">Power Rage: </label>
+      <input
+        type="text"
+        id="powerRage"
+        [(ngModel)]="product.details.powerRage"
+        name="powerRage"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warrantye: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Case Detail -->
+  <div *ngIf="selectedType === 'Case'">
+    <div class="add-detail-product">
+      <label for="brands">Brands: </label>
+      <input
+        type="text"
+        id="brands"
+        [(ngModel)]="product.details.brands"
+        name="brands"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="model">Model: </label>
+      <input
+        type="text"
+        id="model"
+        [(ngModel)]="product.details.model"
+        name="model"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="formFactor">Form Factor: </label>
+      <input
+        type="text"
+        id="formFactor"
+        [(ngModel)]="product.details.formFactor"
+        name="formFactor"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="mainboardSupport">Mainboard Support: </label>
+      <div
+        *ngFor="
+          let mainboardSupport of product.details.mainboardSupport;
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          [(ngModel)]="product.details.mainboardSupport[i]"
+          name="mainboardSupport{{ i }}"
+        />
+        <button type="button" (click)="removeMainboardSupport(i)">
+          Remove
+        </button>
+      </div>
+      <button type="button" (click)="addMainboardSupport()">
+        Add mainboardSupport
+      </button>
+    </div>
+
+    <div class="add-detail-product">
+      <label for="vgaSupport">VGA Support: </label>
+      <input
+        type="text"
+        id="vgaSupport"
+        [(ngModel)]="product.details.vgaSupport"
+        name="vgaSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="color">Color: </label>
+      <input
+        type="text"
+        id="color"
+        [(ngModel)]="product.details.color"
+        name="color"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="cpuCoolerSupport">CPU Cooler Support: </label>
+      <input
+        type="text"
+        id="cpuCoolerSupport"
+        [(ngModel)]="product.details.cpuCoolerSupport"
+        name="cpuCoolerSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="powerSupplySupport">Power Supply Support: </label>
+      <input
+        type="text"
+        id="powerSupplySupport"
+        [(ngModel)]="product.details.powerSupplySupport"
+        name="powerSupplySupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="frontIO">Front IO: </label>
+      <input
+        type="text"
+        id="frontIO"
+        [(ngModel)]="product.details.frontIO"
+        name="frontIO"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="caseExpansionSlots">Case Expansion Slots: </label>
+      <input
+        type="text"
+        id="caseExpansionSlots"
+        [(ngModel)]="product.details.caseExpansionSlots"
+        name="caseExpansionSlots"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="driveBaysSupport">Drive Bays Support: </label>
+      <input
+        type="text"
+        id="driveBaysSupport"
+        [(ngModel)]="product.details.driveBaysSupport"
+        name="driveBaysSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanInstallment">Fan Installment: </label>
+      <input
+        type="text"
+        id="fanInstallment"
+        [(ngModel)]="product.details.fanInstallment"
+        name="fanInstallment"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSupportFront">Fan SupportFront: </label>
+      <input
+        type="text"
+        id="fanSupportFront"
+        [(ngModel)]="product.details.fanSupportFront"
+        name="fanSupportFront"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSupportTop">Fan SupportTop: </label>
+      <input
+        type="text"
+        id="fanSupportTop"
+        [(ngModel)]="product.details.fanSupportTop"
+        name="fanSupportTop"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSupportSide">Fan SupportSide: </label>
+      <input
+        type="text"
+        id="fanSupportSide"
+        [(ngModel)]="product.details.fanSupportSide"
+        name="fanSupportSide"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSupportRear">Fan Support Rear: </label>
+      <input
+        type="text"
+        id="fanSupportRear"
+        [(ngModel)]="product.details.fanSupportRear"
+        name="fanSupportRear"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="fanSupportBottom">Fan Support Bottom: </label>
+      <input
+        type="text"
+        id="fanSupportBottom"
+        [(ngModel)]="product.details.fanSupportBottom"
+        name="fanSupportBottom"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="maxRadiatorSupport">Max Radiator Support: </label>
+      <input
+        type="text"
+        id="maxRadiatorSupport"
+        [(ngModel)]="product.details.maxRadiatorSupport"
+        name="maxRadiatorSupport"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radidatorSupportFront">Radidator Support Front: </label>
+      <input
+        type="text"
+        id="radidatorSupportFront"
+        [(ngModel)]="product.details.radidatorSupportFront"
+        name="radidatorSupportFront"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatorSupportTop">Radiator Support Top: </label>
+      <input
+        type="text"
+        id="radiatorSupportTop"
+        [(ngModel)]="product.details.radiatorSupportTop"
+        name="radiatorSupportTop"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatoSupportSide">Radiato Support Side: </label>
+      <input
+        type="text"
+        id="radiatoSupportSide"
+        [(ngModel)]="product.details.radiatoSupportSide"
+        name="radiatoSupportSide"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatorSupportRear">Radiator Support Rear: </label>
+      <input
+        type="text"
+        id="radiatorSupportRear"
+        [(ngModel)]="product.details.radiatorSupportRear"
+        name="radiatorSupportRear"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="radiatorSupportBottom">Radiator Support Bottom: </label>
+      <input
+        type="text"
+        id="radiatorSupportBottom"
+        [(ngModel)]="product.details.radiatorSupportBottom"
+        name="radiatorSupportBottom"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="accessories">Accessories: </label>
+      <input
+        type="text"
+        id="accessories"
+        [(ngModel)]="product.details.accessories"
+        name="accessories"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="dimensions">Dimensions: </label>
+      <input
+        type="text"
+        id="dimensions"
+        [(ngModel)]="product.details.dimensions"
+        name="dimensions"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="caseWeight">Case Weight: </label>
+      <input
+        type="text"
+        id="caseWeight"
+        [(ngModel)]="product.details.caseWeight"
+        name="caseWeight"
+      />
+    </div>
+
+    <div class="add-detail-product">
+      <label for="warranty">Warranty: </label>
+      <input
+        type="text"
+        id="warranty"
+        [(ngModel)]="product.details.warranty"
+        name="warranty"
+      />
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button class="submit-btn" type="submit">Create Product</button>
+</form>
+
+<!-- Image Previews -->
+<div *ngIf="imagePreviews.length > 0">
+  <h3>Image Previews:</h3>
+  <div *ngFor="let preview of imagePreviews">
+    <img
+      [src]="preview"
+      alt="Image preview"
+      style="width: 100px; height: auto; margin: 5px"
+    />
+  </div>
+</div>

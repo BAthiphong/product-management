@@ -1,0 +1,25 @@
+.edit-product {
+  margin: 16px;
+
+  label{
+    font-size: 18px;
+  }
+}
+
+.img-item {
+  margin: 16px;
+}
+
+.img-detail {
+  margin: 8px;
+}
+
+.submit-btn{
+  width: 120px;
+  height: 60px;
+}
+
+.btn-func {
+  display: flex;
+  flex-direction: row;
+}
